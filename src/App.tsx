@@ -5,7 +5,7 @@ import Nav from './Components/Nav'
 const App = () => {
 
   return (
-    <main>
+    <main className='w-full'>
       <Nav />
     </main>
   )
