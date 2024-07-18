@@ -1,14 +1,13 @@
-import { useState } from 'react'
-import './App.css'
-import Nav from './Components/Nav'
+import React from 'react';
+import './App.css';
 
-const App = () => {
-
+const App: React.FC = () => {
   return (
     <main className='w-full'>
-      <Nav />
+      <h1>Welcome to the Home Page</h1>
+      {/* Other content */}
     </main>
-  )
-}
+  );
+};
 
-export default App
+export default App;
