@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import retroArcade from "../assets/images/retroArcade.png";
-const Nav = () => {
-    const gameNames: string[] = ["2048", "Pong", "Hangman", "Sudoku"];
+import { games } from "../constants/data";
 
+const Nav = () => {
     return (
         <header className=" w-full">
             <nav className="flex justify-between items-center">
@@ -12,8 +12,8 @@ const Nav = () => {
                     <h1 className="p-5 text-4xl font-bold">Game Arcade</h1>
                 </Link>
                 <ul className="flex">
-                    {gameNames.map((gameName, index) => (
-                        <Link to={gameName} key={index} className="px-10 text-4xl">{gameName}</Link>
+                    {games.map((game, index) => (
+                        <Link to={`/${game.name}`} key={index} className="px-10 text-4xl">{game.name}</Link>
                     ))}
                 </ul>
             </nav>
