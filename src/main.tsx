@@ -11,12 +11,14 @@ import {
 import NotFoundPage from "./Components/NotFoundPage.tsx";
 import Layout from "./Layout.tsx";
 import About from "./Components/About.tsx";
+import Game2048 from "./Components/Game2048.tsx";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
         <>
             <Route path="/" element={<Layout />}>
                 <Route index element={<App />} />
+                <Route path="2048" element={<Game2048 />} />
                 <Route path="about" element={<About />} />
             </Route>
             <Route path="*" element={<NotFoundPage />} />

@@ -13,7 +13,7 @@ type Props = {
 
 const GameDisplayCard: React.FC<Props> = ({ game }) => {
     return (
-        <main className="flex flex-col justify-center items-center p-10 border-2 border-black rounded-lg w-[425px] h-[500px]">
+        <main className="flex flex-col justify-center items-center p-10 border-2 border-black shadow-xl rounded-lg w-[425px] h-[500px]">
             <h1 className="text-4xl">{game.name}</h1>
             <img
                 src={game.url}
