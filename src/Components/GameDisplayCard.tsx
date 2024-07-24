@@ -2,7 +2,7 @@ import React from "react";
 
 interface Game {
     name: string;
-    url: string;
+    picture: string;
     description: string;
     controls: string;
 }
@@ -13,16 +13,20 @@ type Props = {
 
 const GameDisplayCard: React.FC<Props> = ({ game }) => {
     return (
-        <main className="flex flex-col justify-center items-center p-10 border-2 border-black shadow-xl rounded-lg max-sm:w-[80vw] min-w-[300px] w-[28vw] h-[30vwpx]">
-            <h1 className="text-4xl">{game.name}</h1>
+        <main className="flex flex-col justify-between items-center p-4 border-2
+                       border-black shadow-xl rounded-lg min-w-[300px] max-w-[300px] 
+                       min-h-[400px] max-h-[400px] overflow-hidden">
+            <h1 className="text-2xl pb-2 text-center">{game.name}</h1>
             <img
-                src={game.url}
+                src={game.picture}
                 alt={`${game.name} Game Image`}
-                className="object-cover"
-                onError={(e) => (e.currentTarget.src = "https://placehold.co/200x300")}
+                className="object-cover w-full h-32"
+                onError={(e) =>
+                    (e.currentTarget.src = "https://placehold.co/320x180")
+                }
             />
-            <p className="text-xl mt-4">{game.description}</p>
-            <p className="text-xl mt-2">Controls: {game.controls}</p>
+            <p className="text-sm mt-2 text-center">{game.description}</p>
+            <p className="text-sm mt-2 text-center">Controls: {game.controls}</p>
         </main>
     );
 };

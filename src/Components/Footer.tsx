@@ -15,7 +15,7 @@ const Footer = (props: Props) => {
                         height={20}
                         className="rounded-full m-0"
                     />
-                    <p>Copyright. All rights reserved.</p>
+                    <p>Copyright Samuel Howard 2024</p>
                 </div>
             </div>
         </footer>
