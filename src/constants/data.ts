@@ -25,4 +25,20 @@ export const games = [
       controls: "Fill the grid with numbers from 1 to 9."
     }
   ];
-  
+
+ export const tileColors = [
+    "bg-[#aad6fe]",
+    "bg-[#8bc6ef]",
+    "bg-[#7bb6df]",
+    "bg-[#6ca6d0]",
+    "bg-[#5d96c1]",
+    "bg-[#4e86b2]",
+    "bg-[#3e75a2]",
+    "bg-[#2f6593]",
+    "bg-[#205584]",
+    "bg-[#104574]",
+    "bg-[#013565]",
+    "bg-[#143b60]",
+    "bg-[#012a51]",
+    "bg-[#010e23]",
+];
