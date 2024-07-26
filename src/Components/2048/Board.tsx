@@ -44,7 +44,7 @@ const Board = (props: Props) => {
                     row.map((cell, colIndex) => (
                         <Tile
                             key={`${rowIndex}-${colIndex}`}
-                            cellValue={cell}
+                            cellValue={cell} row={rowIndex} col={colIndex}
                         />
                     ))
                 )}

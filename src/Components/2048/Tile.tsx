@@ -1,7 +1,7 @@
 import React from "react";
 import { tileColors } from "../../constants/data";
 
-type Props = { cellValue: number };
+type Props = { cellValue: number; row: number; col: number };
 
 const Tile = (props: Props) => {
     function calcBGColor(num: number) {
