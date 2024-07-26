@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import { games } from "./constants/data";
 import GameDisplayCard from "./Components/GameDisplayCard";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const App: React.FC = () => {
     return (
@@ -11,9 +11,9 @@ const App: React.FC = () => {
             <ul className="flex flex-wrap justify-center items-center gap-5 md:gap-20">
                 {games.map((game) => (
                     <li key={game.name} className="flex justify-center">
-                        <Link to={`/${game.name}`} className="block">
+                        <NavLink to={`/${game.name}`} className="block">
                             <GameDisplayCard game={game} />
-                        </Link>
+                        </NavLink>
                     </li>
                 ))}
             </ul>
