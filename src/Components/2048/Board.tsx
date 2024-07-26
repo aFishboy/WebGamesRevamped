@@ -3,7 +3,7 @@ import Tile from "./Tile";
 
 type Props = {};
 
-const Game2048 = (props: Props) => {
+const Board = (props: Props) => {
     const BOARD_SIZE = 4;
     const [board, setBoard] = useState<number[][]>([]);
 
@@ -38,22 +38,19 @@ const Game2048 = (props: Props) => {
     };
 
     return (
-        <main className="flex flex-col items-center justify-center">
-            <h1 className="text-8xl font-bold text-blue-500 pb-5">2048</h1>
-            <div className=" bg-slate-400 p-[12px] sm:p-[16px] rounded-lg w-[300px] h-[300px] sm:w-[500px] sm:h-[500px]">
-                <div className="grid grid-cols-4 gap-[12px] sm:gap-[16px]">
-                    {board.map((row, rowIndex) =>
-                        row.map((cell, colIndex) => (
-                            <Tile
-                                key={`${rowIndex}-${colIndex}`}
-                                cellValue={cell}
-                            />
-                        ))
-                    )}
-                </div>
+        <div className=" bg-slate-400 p-[12px] sm:p-[16px] rounded-lg w-[300px] h-[300px] sm:w-[500px] sm:h-[500px]">
+            <div className="grid grid-cols-4 gap-[12px] sm:gap-[16px]">
+                {board.map((row, rowIndex) =>
+                    row.map((cell, colIndex) => (
+                        <Tile
+                            key={`${rowIndex}-${colIndex}`}
+                            cellValue={cell}
+                        />
+                    ))
+                )}
             </div>
-        </main>
+        </div>
     );
 };
 
-export default Game2048;
+export default Board;

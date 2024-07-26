@@ -11,7 +11,7 @@ import {
 import NotFoundPage from "./Components/NotFoundPage.tsx";
 import Layout from "./Layout.tsx";
 import About from "./Components/About.tsx";
-import Game2048 from "./Components/2048/GameBoard.tsx";
+import Game2048 from "./Components/2048/Game2048.tsx";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
