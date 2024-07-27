@@ -86,15 +86,18 @@ const Board = (props: Props) => {
                     newBoard = transpose(newBoard);
                     break;
                 case "ArrowDown":
+                    newBoard = flipVertically(newBoard);
                     newBoard = transpose(newBoard);
                     newBoard = slideTiles(newBoard);
                     newBoard = transpose(newBoard);
                     newBoard = flipVertically(newBoard);
+
                     break;
                 case "ArrowLeft":
                     newBoard = slideTiles(newBoard);
                     break;
                 case "ArrowRight":
+                    newBoard = flipHorizontally(newBoard);
                     newBoard = slideTiles(newBoard);
                     newBoard = flipHorizontally(newBoard);
                     break;
