@@ -1,5 +1,3 @@
-import React, { useState, useEffect, useCallback } from "react";
-
 const BOARD_SIZE = 4;
 let CURR_ID = 0;
 
