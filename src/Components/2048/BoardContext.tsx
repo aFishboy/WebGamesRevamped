@@ -64,17 +64,11 @@ function slideTiles(boardSlot: BoardSlots[][]): BoardSlots[][] {
 }
 
 export function handleArrowUp(board: BoardSlots[][]): BoardSlots[][] {
-    board = transpose(board);
-    board = slideTiles(board);
-    return transpose(board);
+    return transpose(slideTiles(transpose(board)));
 }
 
 export function handleArrowDown(board: BoardSlots[][]): BoardSlots[][] {
-    board = transpose(board);
-    board = flipHorizontally(board);
-    board = slideTiles(board);
-    board = flipHorizontally(board);
-    return transpose(board);
+    return transpose(flipHorizontally(slideTiles(flipHorizontally(transpose(board)))));
 }
 
 export function handleArrowLeft(board: BoardSlots[][]): BoardSlots[][] {
@@ -82,9 +76,7 @@ export function handleArrowLeft(board: BoardSlots[][]): BoardSlots[][] {
 }
 
 export function handleArrowRight(board: BoardSlots[][]): BoardSlots[][] {
-    board = flipHorizontally(board);
-    board = slideTiles(board);
-    return flipHorizontally(board);
+    return flipHorizontally(slideTiles(flipHorizontally(board)));
 }
 
 function transpose(board: BoardSlots[][]): BoardSlots[][] {
