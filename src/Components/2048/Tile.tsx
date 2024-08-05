@@ -7,16 +7,16 @@ const Tile = (props: Props) => {
     const BOARD_SIZE = 4;
     
     // Define position state outside of useEffect
-    const [position, setPosition] = useState({ top: 0, left: 0 });
+    // const [position, setPosition] = useState({ top: 0, left: 0 });
 
-    useEffect(() => {
-        // Compute new position based on props
-        const newTop = (props.row * 100) / BOARD_SIZE;
-        const newLeft = (props.col * 100) / BOARD_SIZE;
+    // useEffect(() => {
+    //     // Compute new position based on props
+    //     const newTop = (props.row * 100) / BOARD_SIZE;
+    //     const newLeft = (props.col * 100) / BOARD_SIZE;
         
-        // Update position state
-        setPosition({ top: newTop, left: newLeft });
-    }, [props.row, props.col]); // Depend on row and col to trigger effect
+    //     // Update position state
+    //     setPosition({ top: newTop, left: newLeft });
+    // }, [props.row, props.col]); // Depend on row and col to trigger effect
 
     const calcBGColor = (num: number) => {
         const colorIndex = num === 0 ? 0 : Math.log2(num);
@@ -24,8 +24,8 @@ const Tile = (props: Props) => {
     };
 
     const style: React.CSSProperties = {
-        top: `${position.top}%`,
-        left: `${position.left}%`,
+        top: `${(props.row * 100) / BOARD_SIZE}%`,
+        left: `${(props.col * 100) / BOARD_SIZE}%`,
         transition: "top 0.5s ease, left 0.5s ease",
         position: "absolute",
     };

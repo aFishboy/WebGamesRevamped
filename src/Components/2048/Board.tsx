@@ -41,31 +41,29 @@ const Board = () => {
 
     function slideTiles(boardSlot: BoardSlots[][]): BoardSlots[][] {
         return boardSlot.map((row) => {
-            const filteredRow = row.filter((cell) => cell.value !== 0);
-            const mergedRow: BoardSlots[] = [];
-            let skip = false;
-            for (let i = 0; i < filteredRow.length; i++) {
-                if (skip) {
-                    skip = false;
-                    continue;
+            const mergeOccurred = Array(row.length).fill(false);
+    
+            for (let i = 1; i < row.length; i++) {
+                if (row[i].value === 0) continue;
+    
+                let j = i;
+                while (j > 0 && row[j - 1].value === 0) {
+                    j--;
                 }
-                if (
-                    i < filteredRow.length - 1 &&
-                    filteredRow[i].value === filteredRow[i + 1].value
-                ) {
-                    mergedRow.push({
-                        id: tileIdCounterRef.current++, // Use ref value
-                        value: filteredRow[i].value * 2,
-                    });
-                    skip = true;
-                } else {
-                    mergedRow.push(filteredRow[i]);
+    
+                if (j > 0 && row[j - 1].value === row[i].value && !mergeOccurred[j - 1]) {
+                    // Merge tiles
+                    row[j - 1].value *= 2;
+                    [row[j - 1].id, row[i].id] = [row[i].id, row[j - 1].id]; // Swap IDs
+                    row[i].value = 0;
+                    mergeOccurred[j - 1] = true;
+                } else if (j !== i) {
+                    // Shift tile
+                    [row[j], row[i]] = [row[i], row[j]]; // Swap tiles including IDs and values
                 }
             }
-            while (mergedRow.length < BOARD_SIZE) {
-                mergedRow.push({ id: tileIdCounterRef.current++, value: 0 });
-            }
-            return mergedRow;
+    
+            return row;
         });
     }
 
@@ -130,7 +128,7 @@ const Board = () => {
                     return prevBoard;
             }
 
-            // addNewTile(newBoard);
+            addNewTile(newBoard);
 
             return newBoard;
         });
