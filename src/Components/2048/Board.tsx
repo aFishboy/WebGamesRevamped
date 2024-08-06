@@ -13,8 +13,6 @@ const Board = () => {
     const [board, setBoard] = useState<BoardSlots[][]>(initializeBoard);
 
     function addNewTile(boardSlot: BoardSlots[][]) {
-        console.log("🚀 ~ addNewTile ~ addNewTile:")
-        
         const emptyTiles = [];
         for (let row = 0; row < BOARD_SIZE; row++) {
             for (let col = 0; col < BOARD_SIZE; col++) {
@@ -44,19 +42,18 @@ const Board = () => {
     function slideTiles(boardSlot: BoardSlots[][]): BoardSlots[][] {
         return boardSlot.map((row) => {
             const mergeOccurred = Array(row.length).fill(false);
-    
+
             for (let i = 1; i < row.length; i++) {
                 if (row[i].value === 0) continue;
-    
+
                 let j = i;
                 while (j > 0 && row[j - 1].value === 0) {
                     j--;
                 }
-    
+
                 if (j > 0 && row[j - 1].value === row[i].value && !mergeOccurred[j - 1]) {
                     // Merge tiles
                     row[j - 1].value *= 2;
-                    [row[j - 1].id, row[i].id] = [row[i].id, row[j - 1].id]; // Swap IDs
                     row[i].value = 0;
                     mergeOccurred[j - 1] = true;
                 } else if (j !== i) {
@@ -64,7 +61,7 @@ const Board = () => {
                     [row[j], row[i]] = [row[i], row[j]]; // Swap tiles including IDs and values
                 }
             }
-    
+
             return row;
         });
     }
@@ -139,7 +136,7 @@ const Board = () => {
     return (
         <div className="bg-slate-400 p-[12px] sm:p-[16px] rounded-lg w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] relative">
             <div className="relative w-full h-full">
-                {board.map((row, rowIndex) =>
+                {board.flatMap((row, rowIndex) =>
                     row.map((cell, colIndex) =>
                         cell.value !== 0 ? (
                             <Tile
