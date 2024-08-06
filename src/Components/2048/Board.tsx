@@ -13,6 +13,8 @@ const Board = () => {
     const [board, setBoard] = useState<BoardSlots[][]>(initializeBoard);
 
     function addNewTile(boardSlot: BoardSlots[][]) {
+        console.log("🚀 ~ addNewTile ~ addNewTile:")
+        
         const emptyTiles = [];
         for (let row = 0; row < BOARD_SIZE; row++) {
             for (let col = 0; col < BOARD_SIZE; col++) {
@@ -128,7 +130,7 @@ const Board = () => {
                     return prevBoard;
             }
 
-            addNewTile(newBoard);
+            // addNewTile(newBoard);
 
             return newBoard;
         });

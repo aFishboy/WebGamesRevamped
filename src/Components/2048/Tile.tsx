@@ -5,6 +5,11 @@ type Props = { cellValue: number; row: number; col: number; id: number };
 
 const Tile = (props: Props) => {
     const BOARD_SIZE = 4;
+
+    useEffect(()=>{
+        console.log(`Tile with id: ${props.id} and cellValue: ${props.cellValue} mounted at time ${new Date().toLocaleTimeString()}`)
+        return ()=>{console.log(`Tile with id: ${props.id} and cellValue: ${props.cellValue} unmounted at time ${new Date().toLocaleTimeString()}`)}
+      })
     
     // Define position state outside of useEffect
     // const [position, setPosition] = useState({ top: 0, left: 0 });
@@ -26,7 +31,7 @@ const Tile = (props: Props) => {
     const style: React.CSSProperties = {
         top: `${(props.row * 100) / BOARD_SIZE}%`,
         left: `${(props.col * 100) / BOARD_SIZE}%`,
-        transition: "top 0.5s ease, left 0.5s ease",
+        transition: "all 0.5s ease",
         position: "absolute",
     };
 
