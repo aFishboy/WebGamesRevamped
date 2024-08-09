@@ -8,9 +8,40 @@ const Board = () => {
         value: number;
     }
 
-    const tileIdCounterRef = useRef(0); // Use ref to keep track of tile ID counter
+    const tileIdCounterRef = useRef(0);
     const [board, setBoard] = useState<BoardSlots[][]>(
         initializeBoard(tileIdCounterRef)
+    );
+    const [isCooldown, setIsCooldown] = useState(false);
+
+    const handleKeyDown = useCallback(
+        (event: KeyboardEvent) => {
+            if (
+                !["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(
+                    event.key
+                )
+            ) {
+                return;
+            }
+            event.preventDefault();
+
+            if (isCooldown) {
+                return;
+            }
+
+            setIsCooldown(true);
+            setBoard((prevBoard) => {
+                const newBoard = handleArrow(prevBoard, event.key);
+                setTimeout(() => {
+                    addNewTile(newBoard);
+                    setBoard([...newBoard]);
+                    setIsCooldown(false);
+                }, 300);
+
+                return newBoard;
+            });
+        },
+        [isCooldown]
     );
 
     useEffect(() => {
@@ -18,35 +49,8 @@ const Board = () => {
         return () => {
             window.removeEventListener("keydown", handleKeyDown);
         };
-    }, []);
+    }, [handleKeyDown]);
 
-    const handleKeyDown = useCallback((event: KeyboardEvent) => {
-        setBoard((prevBoard) => {
-            if (
-                ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(
-                    event.key
-                )
-            ) {
-                event.preventDefault();
-            }
-
-            const board: BoardSlots[][] = handleArrow(prevBoard, event.key);
-
-            addNewTile(board);
-
-            return board;
-        });
-    }, []);
-
-    let tileCounter = 0;
-    board.forEach(row => {
-        row.forEach((tile) => {
-            if (tile.value != 0) tileCounter++
-        })
-    }) 
-    console.log(tileCounter);
-    
-    
     return (
         <div className="bg-slate-400 p-[12px] sm:p-[16px] rounded-lg w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] relative">
             <div className="relative w-full h-full">
@@ -55,7 +59,6 @@ const Board = () => {
                         cell.value !== 0 ? (
                             <Tile
                                 key={cell.id}
-                                id={cell.id}
                                 cellValue={cell.value}
                                 row={rowIndex}
                                 col={colIndex}
